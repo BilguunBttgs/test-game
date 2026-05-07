@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://cedmiickrw1xt"]
 
+[ext_resource type="Script" uid="uid://vy4jhn6dsnmh" path="res://scripts/game_manager.gd" id="1_gee14"]
 [ext_resource type="PackedScene" uid="uid://d1ibf870yo2vq" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://crqheqqnp56iu" path="res://assets/sprites/world_tileset.png" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://bc1v8f3au3vrp" path="res://scenes/platform.tscn" id="3_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://dawdsvvkutys7" path="res://scenes/coin.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://c22t1sxu7gguo" path="res://scenes/killzone.tscn" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://di2kky6wkiwhy" path="res://scenes/slime.tscn" id="6_p57ef"]
+[ext_resource type="FontFile" uid="uid://dk8f4ystrkf6f" path="res://assets/fonts/PixelOperator8.ttf" id="7_u5sy4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("1_yqjtg")
@@ -218,6 +220,20 @@ _data = {
 
 [node name="game" type="Node2D" unique_id=1494983766]
 
+[node name="GameManager" type="Node" parent="." unique_id=436188255]
+unique_name_in_owner = true
+script = ExtResource("1_gee14")
+
+[node name="score" type="Label" parent="GameManager" unique_id=215276842]
+offset_left = 131.0
+offset_top = -103.0
+offset_right = 182.0
+offset_bottom = -92.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_u5sy4")
+theme_override_font_sizes/font_size = 8
+text = "Coins: 0"
+
 [node name="TileMap" type="TileMap" parent="." unique_id=1013747281]
 position = Vector2(0, -13)
 tile_set = SubResource("TileSet_lbhrr")
@@ -237,7 +253,7 @@ limit_bottom = 70
 position_smoothing_enabled = true
 
 [node name="killzone" parent="." unique_id=1388246830 instance=ExtResource("5_iywne")]
-position = Vector2(56, 26)
+position = Vector2(54, 44)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="killzone" unique_id=676100809]
 position = Vector2(8, -2)
@@ -269,8 +285,20 @@ position = Vector2(322, -40)
 libraries/ = SubResource("AnimationLibrary_iywne")
 autoplay = &"move"
 
-[node name="Slime" parent="." unique_id=801983688 instance=ExtResource("6_p57ef")]
+[node name="Enemies" type="Node" parent="." unique_id=613238971]
+
+[node name="Slime" parent="Enemies" unique_id=801983688 instance=ExtResource("6_p57ef")]
 position = Vector2(248, -56)
 
-[node name="Slime2" parent="." unique_id=837740814 instance=ExtResource("6_p57ef")]
+[node name="Slime2" parent="Enemies" unique_id=837740814 instance=ExtResource("6_p57ef")]
 position = Vector2(440, -56)
+
+[node name="Label" type="Label" parent="." unique_id=602844745]
+offset_left = -81.0
+offset_top = -67.0
+offset_right = 5.0
+offset_bottom = -56.0
+theme_override_colors/font_color = Color(0.07450981, 0.59607846, 0.8627451, 1)
+theme_override_fonts/font = ExtResource("7_u5sy4")
+theme_override_font_sizes/font_size = 8
+text = "Space to jump"
